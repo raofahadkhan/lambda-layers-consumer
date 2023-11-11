@@ -32,6 +32,9 @@ export class LambdaLayersConsumerStack extends cdk.Stack {
       handler: "index.handler",
       code: lambda.Code.fromAsset("lambda"), // Adjust the path of the code
       layers: [layer],
+      environment: {
+        TABLE_NAME: userTable.tableName,
+      },
     });
 
     userTable.grantFullAccess(lambdaLayersConsumer);
